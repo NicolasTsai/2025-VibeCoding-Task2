@@ -1,6 +1,6 @@
 /**
  * 綜合檢查（HTML/SEO + 水平捲動）
- * - 只輸出分數與每條規則的結果，不讓 CI fail（exit code 0）
+ * - 所有檢查項目必須通過，否則 CI fail（exit code 1）
  * - 會把結果寫進 $GITHUB_STEP_SUMMARY（Checks -> Summary）
  * - 自動在 PR 上留言顯示檢查結果
  */
@@ -20,7 +20,7 @@ if (!htmlFile) {
     score: 0,
     note: "找不到 index.html 或 docs/index.html"
   });
-  process.exit(0);
+  process.exit(1);
 }
 
 const raw = fs.readFileSync(htmlFile, "utf8");
@@ -32,7 +32,7 @@ if (!raw.trim()) {
     score: 0,
     note: "HTML 檔案為空"
   });
-  process.exit(0);
+  process.exit(1);
 }
 
 const $ = cheerio.load(raw);
@@ -133,6 +133,16 @@ output({ results, score: finalScore });
 
 // 6) 自動在 PR 留言
 await postPRComment({ results, score: finalScore });
+
+// 7) 檢查是否所有項目都通過，否則讓 CI 失敗
+const allPassed = results.every(r => r.passed);
+if (!allPassed) {
+  console.log('\n❌ 有檢查項目未通過，CI 失敗');
+  process.exit(1);
+}
+
+console.log('\n✅ 所有檢查項目通過！');
+process.exit(0);
 
 function output({ results, score, note }) {
   console.log(`🎯 本次檢查：${score}/100 分`);
