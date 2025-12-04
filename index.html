@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -7,9 +8,7 @@
   <title>Nicolas Tsai的個人作品網站 | Vibe Coding | 六角學院</title>
 
   <style>
-    /* =========================================================
-       CSS:BASE — 全站基底樣式
-       ========================================================= */
+    /* ========== CSS:BASE — 全站基底樣式 ========== */
     /* CSS:BASE-START */
     * {
       box-sizing: border-box;
@@ -45,91 +44,214 @@
       color: #6ec1ff;
       text-decoration: none;
     }
+
     a:hover {
       text-decoration: underline;
     }
+
     /* CSS:BASE-END */
 
 
-    /* =========================================================
-       CSS:HERO — Hero 區樣式
-       ========================================================= */
+    /* ========== CSS:HERO — Hero 區樣式 ========== */
     /* CSS:HERO-START */
     .section-hero {
       text-align: center;
       padding: 6rem 0;
     }
+
     .hero-title {
       font-size: 2rem;
       margin-bottom: 1rem;
       color: #eaf2f8;
     }
+
     .hero-subtext {
       margin-bottom: 1rem;
       color: #cfd9e3;
     }
-    .hero-image-wrap {
-      margin-top: 2rem;
-      max-width: 320px;
-      margin-left: auto;
-      margin-right: auto;
-    }
     /* CSS:HERO-END */
 
 
-    /* =========================================================
-       CSS:ABOUT — About 區樣式
-       ========================================================= */
+    /* ========== CSS:ABOUT — About 區樣式 ========== */
     /* CSS:ABOUT-START */
     .section-about .section-title {
       margin-bottom: 1rem;
       font-size: 1.5rem;
       color: #bcd4e6;
     }
+
     /* CSS:ABOUT-END */
 
 
-    /* =========================================================
-       CSS:SKILLS — Skills 區樣式
-       ========================================================= */
+    /* ========== CSS:SKILLS — Skills 區樣式 ========== */
     /* CSS:SKILLS-START */
     .section-skills .section-title {
       margin-bottom: 1rem;
       font-size: 1.5rem;
       color: #bcd4e6;
     }
+
+    /* 全局樣式 */
+    :root {
+      --primary-color: #4f46e5;
+      /* Indigo-600 */
+      --primary-dark: #3730a3;
+      /* Indigo-800 */
+      --text-dark: #1f2937;
+      /* Gray-900 */
+      --text-light: #f9fafb;
+      /* Gray-50 */
+      --bg-light: #f3f4f6;
+      /* Gray-100 */
+      --bg-white: #ffffff;
+      --shadow-color: rgba(0, 0, 0, 0.1);
+    }
+
+    .table-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    /* 表格容器樣式 */
+    .table-wrapper {
+      box-shadow: 0 20px 25px -5px var(--shadow-color), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      border-radius: 0.75rem;
+      /* rounded-xl */
+      overflow: hidden;
+      /* 確保陰影和圓角正確顯示 */
+      background-color: var(--bg-white);
+    }
+
+    /* 表格樣式 */
+    .skills-table {
+      width: 100%;
+      border-collapse: collapse;
+      /* 移除 min-width */
+    }
+
+    /* 表格頭部樣式 */
+    .skills-table thead {
+      background-color: var(--primary-color);
+    }
+
+    .skills-table th {
+      padding: 1rem 1.5rem;
+      text-align: left;
+      font-size: 0.875rem;
+      /* text-sm */
+      font-weight: 600;
+      /* font-semibold */
+      color: var(--text-light);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* 圓角處理 */
+    .skills-table th:first-child {
+      border-top-left-radius: 0.75rem;
+    }
+
+    .skills-table th:last-child {
+      border-top-right-radius: 0.75rem;
+    }
+
+    /* 表格內容樣式 */
+    .skills-table td {
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid #e5e7eb;
+      /* Gray-200 */
+      /* 關鍵變更：移除 white-space: nowrap; 以實現自動換行 */
+      word-wrap: break-word;
+      /* 確保長單詞也能換行 */
+    }
+
+    /* 粗體類別名稱 */
+    .skills-table td:nth-child(1) {
+      font-weight: 700;
+      color: var(--primary-color);
+      background-color: #f9fafb;
+      /* 輕微區隔背景色 */
+    }
+
+    /* 內容文字顏色 */
+    .skills-table td:nth-child(2) {
+      color: var(--text-dark);
+    }
+
+    /* 備註文字顏色 (較淡) */
+    .skills-table td:nth-child(3) {
+      color: #6b7280;
+      /* Gray-500 */
+    }
+
+    /* 隱藏重複的類別名稱的 td 邊界 */
+    .skills-table tr:not(:first-child) td:first-child[rowspan="1"] {
+      border-top: none;
+      background-color: transparent;
+      color: transparent;
+      /* 隱藏類別名稱，但保留結構 */
+      font-size: 0;
+      /* 確保內容完全隱藏 */
+      padding-top: 0;
+      /* 減少多餘空間 */
+    }
+
+    /* 響應式調整 */
+    @media (max-width: 768px) {
+      .table-wrapper {
+        /* 關鍵變更：移除 overflow-x: auto; */
+        border-radius: 0;
+        padding: 0 0.5rem;
+        /* 在小螢幕上給予左右小間距 */
+        box-shadow: none;
+        /* 小螢幕下移除 box-shadow 讓視覺更簡潔 */
+      }
+
+      .skills-table {
+        /* 關鍵變更：移除 min-width: 600px; */
+      }
+
+      .skills-table th,
+      .skills-table td {
+        padding: 0.75rem 0.5rem;
+      }
+
+      .section-header {
+        font-size: 1.875rem;
+        /* 較小的標題 */
+      }
+    }
+
     /* CSS:SKILLS-END */
 
 
-    /* =========================================================
-       CSS:PROJECTS — Projects 區樣式
-       ========================================================= */
+    /* ========== CSS:PROJECTS — Projects 區樣式 ========== */
     /* CSS:PROJECTS-START */
     .section-projects .section-title {
       margin-bottom: 1rem;
       font-size: 1.5rem;
       color: #bcd4e6;
     }
+
     /* CSS:PROJECTS-END */
 
 
-    /* =========================================================
-       CSS:CONTACT — Contact 區樣式
-       ========================================================= */
+    /* ========== CSS:CONTACT — Contact 區樣式 ========== */
     /* CSS:CONTACT-START */
     .section-contact .section-title {
       margin-bottom: 1rem;
       font-size: 1.5rem;
       color: #bcd4e6;
     }
+
     /* CSS:CONTACT-END */
 
 
-    /* =========================================================
-       CSS:RWD — 手機優先 RWD
-       ========================================================= */
+    /* ========== CSS:RWD — 手機優先 RWD ========== */
     /* CSS:RWD-START */
     @media (min-width: 768px) {
+
       .section-about .container,
       .section-projects .container {
         display: flex;
@@ -137,13 +259,12 @@
         gap: 2rem;
       }
     }
+
     /* CSS:RWD-END */
 
 
-    /* =========================================================
-       Header / 導覽列
-       ========================================================= */
-     /* CSS:Header-START */  
+    /* ========== Header / 導覽列 ========== */
+    /* CSS:Header-START */
     .site-header {
       position: sticky;
       top: 0;
@@ -174,13 +295,13 @@
       color: #cfe2f3;
       font-size: 0.95rem;
     }
+
     .nav-link:hover {
       color: #ffffff;
       text-decoration: underline;
     }
+
     /* CSS:Header-END */
-
-
   </style>
 </head>
 
@@ -208,12 +329,14 @@
     <!-- SECTION:HERO-START -->
     <section id="hero" class="section section-hero" aria-labelledby="hero-heading">
       <div class="container">
-        <h1 id="hero-heading" class="hero-title">這裡是 Hero 區的主視覺標題（之後會用 Section SDD 調整）</h1>
-        <p class="hero-subtext">這裡是 Hero 區的占位文字，用來描述未來將呈現一句自我介紹與核心角色，例如 Frontend Developer。</p>
-        <p class="hero-subtext">之後會用 Section SDD 的 Prompt 產生正式文案與版面，再把整個 section 貼回來取代這一區。</p>
+        <h1 id="hero-heading" class="hero-title">資深系統分析師 & 專案經理</h1>
+        <p class="hero-subtext">擁有 18 年軟體開發與系統整合實戰經驗。<br>從傳統架構到數位孿生 (Digital
+          Twin)，我專注於將複雜數據轉化為具體的企業解決方案，確保技術投資能帶來實質的業務成長。</p>
 
-        <div class="hero-image-wrap">
-          <img src="https://plus.unsplash.com/premium_photo-1661331617718-e99db3b0e64f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="在筆電前撰寫程式碼的前端開發者" loading="lazy">
+        <div>
+          <img
+            src="https://plus.unsplash.com/premium_photo-1661331617718-e99db3b0e64f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="在筆電前撰寫程式碼的前端開發者" loading="lazy">
         </div>
       </div>
     </section>
@@ -227,14 +350,32 @@
     <section id="about" class="section section-about" aria-labelledby="about-heading">
       <div class="container">
         <div>
-          <h2 id="about-heading" class="section-title">關於我（之後會用 Section SDD 替換）</h2>
-          <p>這裡是 About 區的占位內容。未來會使用 Section SDD 的 Prompt 生成正式自我介紹、背景與敘述，再整段貼回來取代此區塊。</p>
-          <p>請把新的 section 程式碼整段貼在 SECTION:ABOUT-START 與 SECTION:ABOUT-END 註解間，完全覆蓋這裡。</p>
+
+          <h2 id="about-heading" class="section-title">關於我</h2>
+
+          <p>作為一名擁有超過 18 年經驗的資深技術人，我的職涯橫跨了軟體開發的全生命週期。早年從 Delphi 與 Visual Basic .NET 等傳統語言起步，累積了深厚的程式開發底蘊；隨著技術演進，我成功轉型至現代化 Web 應用程式開發 (ASP.NET Core, Python) 與高階數據分析領域。</p>
+
+          <p>我不僅僅是寫程式的開發者，更是一位擅長溝通的系統分析師 (SA) 與專案經理 (PM)。我擁有 MCSD 認證，並經過資策會系統分析實務培訓。我的核心價值在於能夠快速理解使用者的真實需求，將其精準轉化為可執行的技術架構，並在環境工程、房產管理及電子商務等多個領域，成功主導關鍵系統的建置、整合與優化。</p>
+
+          <ul class="about-list">
+            <li>快速理解需求，將模糊目標轉為具體技術解決方案</li>
+            <li>跨部門協作與專案管理，確保系統按時、高品質交付</li>
+            <li>具備 Legacy → Modern 系統轉型成功經驗</li>
+          </ul>
+
+          <div class="btn-group">
+            <a class="btn" href="#projects">查看作品集</a>
+            <a class="btn" href="#contact">聯絡我</a>
+          </div>
+
         </div>
 
         <div>
-          <img src="https://plus.unsplash.com/premium_photo-1661340815616-3096299ff5e4?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="開發者的桌面與筆電" loading="lazy">
+          <img
+            src="https://plus.unsplash.com/premium_photo-1661340815616-3096299ff5e4?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="開發者的桌面與筆電" loading="lazy">
         </div>
+      </div>
       </div>
     </section>
     <!-- SECTION:ABOUT-END -->
@@ -245,11 +386,136 @@
     <!-- ================================================================= -->
     <!-- SECTION:SKILLS-START -->
     <section id="skills" class="section section-skills" aria-labelledby="skills-heading">
-      <div class="container">
-        <h2 id="skills-heading" class="section-title">技能（之後會用 Section SDD 替換）</h2>
-        <p>這裡是 Skills 區的占位內容，未來會用 Section SDD 產生技能分類、技能列表或說明。開發者可直接以整段 section 替換此區。</p>
-        <p>請把新的 section 程式碼整段貼在 SECTION:SKILLS-START 與 SECTION:SKILLS-END 之間，完全覆蓋這裡。</p>
-      </div>
+      <div class="table-container">
+        <h2 id="skills-heading" class="section-title">核心技能 (Core Skills)</h2>
+        <div class="table-wrapper">
+          <table class="skills-table">
+            <thead>
+              <tr>
+                <th scope="col" style="border-top-left-radius: 0.75rem;">
+                  類別
+                </th>
+                <th scope="col">
+                  技術/能力
+                </th>
+                <th scope="col" style="border-top-right-radius: 0.75rem;">
+                  備註
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+
+              <!-- 後端與核心開發 -->
+              <tr>
+                <td rowspan="4">
+                  後端與核心開發
+                </td>
+                <td>
+                  C# (ASP.NET Web Form / MVC / Core)
+                </td>
+                <td>
+                  現代化 Web 應用程式開發主力
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  VB.NET
+                </td>
+                <td>
+                  具備多年系統開發與整合經驗
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  Python
+                </td>
+                <td>
+                  專精於數據分析與環境工程應用
+                </td>
+              </tr>
+              <tr>
+                <td style="border-bottom: 2px solid var(--primary-color);">
+                  Delphi / Pascal
+                </td>
+                <td style="border-bottom: 2px solid var(--primary-color);">
+                  具備 Legacy 系統維護與轉移能力
+                </td>
+              </tr>
+
+              <!-- 前端技術 -->
+              <tr>
+                <td rowspan="1">
+                  前端技術
+                </td>
+                <td>
+                  HTML5 / CSS3, JavaScript / jQuery
+                </td>
+                <td>
+                  熟悉前端互動與響應式網頁 (RWD) 觀念
+                </td>
+              </tr>
+
+              <!-- 資料庫與數據 -->
+              <tr>
+                <td rowspan="3">
+                  資料庫與數據
+                </td>
+                <td>
+                  MS SQL Server (T-SQL, Stored Procedures)
+                </td>
+                <td>
+                  具備資料庫設計與效能優化能力
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  Digital Twin Concepts (數位孿生概念應用)
+                </td>
+                <td>
+                  應用於實體世界數據的模擬與分析
+                </td>
+              </tr>
+              <tr>
+                <td style="border-bottom: 2px solid var(--primary-color);">
+                  Data Analysis (數據監測與分析)
+                </td>
+                <td style="border-bottom: 2px solid var(--primary-color);">
+                  專長於環境汙染源數據的收集與決策分析
+                </td>
+              </tr>
+
+              <!-- 管理與分析 -->
+              <tr>
+                <td rowspan="3">
+                  管理與分析
+                </td>
+                <td>
+                  Project Management (專案管理 PM)
+                </td>
+                <td>
+                  涵蓋需求、時程、資源與風險控制
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  System Analysis (系統分析 SA)
+                </td>
+                <td>
+                  經過資策會培訓，具備專業需求訪談與文件撰寫能力
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  System Design (系統設計 SD)
+                </td>
+                <td>
+                  熟悉軟體架構規劃與模組設計
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
     </section>
     <!-- SECTION:SKILLS-END -->
     <!-- ================================================================= -->
@@ -261,13 +527,34 @@
     <section id="projects" class="section section-projects" aria-labelledby="projects-heading">
       <div class="container">
         <div>
-          <h2 id="projects-heading" class="section-title">作品集（之後會用 Section SDD 替換）</h2>
-          <p>這裡是 Projects 區的占位內容，未來會以 Section SDD 生成專案卡片、圖片與詳細描述。</p>
-          <p>請把新的 section 程式碼整段貼在 SECTION:PROJECTS-START 與 SECTION:PROJECTS-END 中間以取代。</p>
+          <h2 id="projects-heading" class="section-title">作品集 (Projects)</h2>
+          <h3>1. 環境工程監測汙染源數據收集與分析系統</h3>
+          <p>時間: 2023 - 2025 (2 年 1 個月) <br>擔任角色: PM (專案經理) / SA (系統分析)</p>
+          <p>針對環境管理需求進行系統客製化分析與管理。我主導導入 Digital Twin (數位孿生) 概念，利用 Python 進行汙染源數據的建模、模擬與分析。並結合 ASP.NET Core
+            建構高效率的可視化管理平台，顯著提升了監測數據的精準度與決策效率。</p>
+          <p>關鍵技術: Python, ASP.NET Core, Digital Twin, MS SQL</p>
+          <hr>
+          <h3>2. 企業官方網站維運與平台改版</h3>
+          <p>時間: 2018 - 2023 (3 年 11 個月) <br>擔任角色: 網站工程師 / 維運主管</p>
+          <p>長期負責知名膠業製造公司的官方網站維運與穩定性。我主導後期的網站建置平台更換與改版工程，不僅優化了使用者前端體驗 (UI/UX)，更完善了後台內容管理系統 (CMS) 的流程，確保企業網路門面的專業與即時性。
+          </p>
+          <p>關鍵技術: HTML, JavaScript, Visual Studio, Web Maintenance</p>
+          <hr>
+          <h3>3. 進銷存資料庫與電商平台整合</h3>
+          <p>時間: 2015 - 2018 (2 年 2 個月) <br>擔任角色: PM (專案經理)</p>
+          <p>負責國際貿易公司的數位轉型專案。我規劃並執行內部 ERP 進銷存系統與外部電子商務平台 (EC) 的 API 資料串接，實現庫存同步更新與訂單自動化處理。此舉成功消弭資訊孤島，大幅降低人工錯誤率並提升訂單處理效率。
+          </p>
+          <p>關鍵技術: VB.NET, MS-SQL, System Integration, E-commerce</p>
+          <hr>
+          <h3>4. 房仲企業 ERP 系統 – 房源物件管理模組</h3>
+          <p>時間: 2003 - 2014 (10 年 5 個月) <br>擔任角色: SA / SD / 程式開發</p>
+          <p>參與知名房仲企業的核心系統開發與維護。我負責房源物件管理模組的長期維護與功能擴充，工作內容包含從使用者需求訪談、系統邏輯設計到程式碼撰寫的完整軟體生命週期，確保核心業務的穩定運作。</p>
+          <p>關鍵技術: VB.NET, ASP.NET, MS-SQL, ERP</p>
         </div>
-
         <div>
-          <img src="https://images.unsplash.com/photo-1649451844859-fdd73bf10f04?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="程式專案開發截圖示意圖" loading="lazy">
+          <img
+            src="https://images.unsplash.com/photo-1649451844859-fdd73bf10f04?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="程式專案開發截圖示意圖" loading="lazy">
         </div>
       </div>
     </section>
@@ -280,14 +567,12 @@
     <!-- SECTION:CONTACT-START -->
     <section id="contact" class="section section-contact" aria-labelledby="contact-heading">
       <div class="container">
-        <h2 id="contact-heading" class="section-title">聯絡我（之後會用 Section SDD 替換）</h2>
-        <p>這裡是 Contact 區占位內容。未來會生成正式的聯絡方式資訊，例如 Email、LinkedIn 或 GitHub。</p>
-        <p>請把新的 section 程式碼整段貼在 SECTION:CONTACT-START 與 SECTION:CONTACT-END 的兩個註解之間，完全覆蓋這裡。</p>
-
+        <h2 id="contact-heading" class="section-title">聯絡我（Contact）</h2>
         <p>Email：<a href="mailto:nicolas.tsai@hotmail.com">nicolas.tsai@hotmail.com</a></p>
         <p>電話：<a href="tel:+886918709110">+886 918 709 110</a></p>
         <p>GitHub：<a href="https://github.com/NicolasTsai">https://github.com/yNicolasTsai</a></p>
-        <p>LinkedIn：<a href="https://www.linkedin.com/in/nicolas-tsai-2a602363">https://www.linkedin.com/in/NicolasTsai</a></p>
+        <p>LinkedIn：<a
+            href="https://www.linkedin.com/in/nicolas-tsai-2a602363">https://www.linkedin.com/in/NicolasTsai</a></p>
       </div>
     </section>
     <!-- SECTION:CONTACT-END -->
@@ -301,4 +586,5 @@
   </footer>
 
 </body>
+
 </html>
